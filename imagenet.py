@@ -71,12 +71,12 @@ parser.add_argument('--dist-backend', default='gloo', type=str,
 
 parser.add_argument('--ncnn',  default=8,type=int, help='depth of the auxiliary CNN')
 parser.add_argument('--bn',  default=1,type=int, help='turn off/on batchnorm')
-parser.add_argument('--nepochs',  default=5,type=int, help='number of epochs')
+parser.add_argument('--nepochs',  default=45,type=int, help='number of epochs')
 parser.add_argument('--epochdecay',  default=20,type=int, help='interval between lr decay')
 parser.add_argument('--avg_size',  default=7,type=int, help='size of the averaging')
-parser.add_argument('--feature_size',  default=64,type=int, help='width')
+parser.add_argument('--feature_size',  default=128,type=int, help='width')
 parser.add_argument('--nlin',  default=2,type=int, help='number of non linearities in the auxillary')
-parser.add_argument('--ds',  default=2,type=int, help='downsmapling')
+parser.add_argument('--ds',  default=2,type=int, help='initial downsampling')
 parser.add_argument('--ensemble', default=1,type=int,help='ensemble') # not implemented yet
 parser.add_argument('--name', default='',type=str,help='name')
 parser.add_argument('--prog',  default=0,type=int, help='increase width of auxillary at downsampling')
