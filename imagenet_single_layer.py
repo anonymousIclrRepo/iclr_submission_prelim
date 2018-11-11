@@ -72,9 +72,9 @@ class block_conv(nn.Module):
         out = F.relu(self.bn1(self.conv1(x)))
         return out
 
-class greedyResNet(nn.Module):
+class greedyNet(nn.Module):
     def __init__(self, block, num_blocks, feature_size=256,downsampling=1, downsample=[],batchnorm=True,strd=False):
-        super(greedyResNet, self).__init__()
+        super(greedyNet, self).__init__()
         self.in_planes = feature_size
         self.down_sampling = psi(downsampling)
         self.downsample_init = downsampling
@@ -207,13 +207,13 @@ parser.add_argument('--ds',  default=2,type=int, help='initial downsampling')
 parser.add_argument('--ensemble', default=1,type=int,help='ensemble') # not implemented yet
 parser.add_argument('--name', default='',type=str,help='name')
 parser.add_argument('--debug', default=0,type=int,help='debug')
-parser.add_argument('--large_size_images', default=2,type=int,help='small images')
+parser.add_argument('--large_size_images', default=2,type=int,help='small images for debugging')
 parser.add_argument('--n_resume', default=0,type=int,help='which n we resume')
 parser.add_argument('--resume_epoch', default=0,type=int,help='which n we resume')
 parser.add_argument('--dilate', default=0,type=int,help='dilate')
-parser.add_argument('--resume_feat', default=0,type=int,help='dilate')
-parser.add_argument('--down', default=1,type=int,help='down')
-parser.add_argument('--save_folder', default='.',type=str,help='down')
+parser.add_argument('--resume_feat', default=0,type=int,help='deprecated')
+parser.add_argument('--down', default=1,type=int,help='perform downsampling ops')
+parser.add_argument('--save_folder', default='.',type=str,help='folder saving')
 
 args = parser.parse_args()
 best_prec1 = 0
@@ -227,13 +227,11 @@ name_log_txt=name_log_txt +'.log'
 args.ensemble = args.ensemble>0
 args.debug = args.debug > 0
 args.bn = args.bn > 0
-args.dilate = args.dilate > 0
+args.dilate = args.dilate > 0 #toremove
 args.nlin=0 # We only do k=1 here as its a special case
 downsample = [1,2,3,5]
 args.down = args.down > 0
 
-
-incr = 2
 
 def main():
     global args, best_prec1
@@ -255,8 +253,9 @@ def main():
         print(args, file=text_file)
 
     n_cnn = args.ncnn
+    
 
-    model = greedyResNet(block_conv,1,feature_size=args.feature_size,downsampling=args.ds,
+    model = greedyNet(block_conv,1,feature_size=args.feature_size,downsampling=args.ds,
                          downsample=downsample,batchnorm=args.bn)
     num_feat = args.feature_size
     model_c = auxillary_classifier(avg_size=args.avg_size, in_size=in_size, feature_size=num_feat, num_classes=1000, batchn=args.bn)
@@ -409,7 +408,7 @@ def main():
         if args.down and n in downsample:
             args.avg_size = int(args.avg_size / 2)
             in_size = int(in_size / 2)
-            args.feature_size = int(args.feature_size * incr)
+            args.feature_size = int(args.feature_size * 2)
 
         print('create next auxillary classifier')
         model_c = auxillary_classifier(avg_size=args.avg_size, in_size=in_size, feature_size=args.feature_size, num_classes=1000, batchn=args.bn)
