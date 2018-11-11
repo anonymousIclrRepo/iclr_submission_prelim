@@ -37,7 +37,7 @@ parser.add_argument('--nlin',  default=2,type=int, help='nlin')
 parser.add_argument('--ensemble', default=1,type=int,help='compute ensemble')
 parser.add_argument('--name', default='',type=str,help='name')
 parser.add_argument('--batch_size', default=128,type=int,help='batch size')
-parser.add_argument('--bn', default=1,type=int,help='use batchnorm')
+parser.add_argument('--bn', default=0,type=int,help='use batchnorm')
 parser.add_argument('--debug', default=0,type=int,help='debug')
 parser.add_argument('--debug_parameters', default=0,type=int,help='verification that layers frozen')
 parser.add_argument('-j', '--workers', default=6, type=int, metavar='N',
