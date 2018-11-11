@@ -43,7 +43,7 @@ parser.add_argument('--debug_parameters', default=0,type=int,help='verification 
 parser.add_argument('-j', '--workers', default=6, type=int, metavar='N',
                     help='number of data loading workers (default: 4)')
 parser.add_argument('--width_aux', default=128,type=int,help='auxillary width')
-parser.add_argument('--down', default='[1,3]', type=str,
+parser.add_argument('--down', default='[1,2,3]', type=str,
                         help='layer at which to downsample')
 parser.add_argument('--seed', default=None, help="Fixes the CPU and GPU random seeds to a specified number")
 
