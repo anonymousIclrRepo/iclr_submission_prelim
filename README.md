@@ -1,6 +1,6 @@
 # layerwiseCNN
 
-Code related to https://openreview.net/pdf?id=r1Gsk3R9Fm
+Code for experiments on greedy supervised layerwise CNNs
 
 CIFAR pruning experiments  and code for updating the final auxillary final update
 
