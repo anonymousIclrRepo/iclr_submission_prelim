@@ -1,8 +1,8 @@
 # Greedy Layerwise CNN
 
-Code for experiments on greedy supervised layerwise CNNs
+This is a peliminary research code.
 
-CIFAR pruning experiments  and code for updating the final auxillary final update
+Code for experiments on greedy supervised layerwise CNNs
 
 CIFAR experiments can be reproduced using cifar.py
 
@@ -52,3 +52,5 @@ k=1 model
 python imagenet_single_layer.py 
 
 ```
+
+To be added soon CIFAR pruning experiments, linear separability experiments,  and code for reducing of final auxillary network
