@@ -300,8 +300,6 @@ for n in range(n_cnn):
                                      input_features=args.feature_size, batchn=args.bn).cuda()
         net.module[0].add_block(n in downsample)
         net = torch.nn.DataParallel(nn.Sequential(net.module[0], net_c)).cuda()
-        with open(name_log_txt, "a") as text_file:
-            print(net, file=text_file)
 
 state_final = {
             'net': net,
