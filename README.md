@@ -10,6 +10,7 @@ Imagenet experiments for 1-hidden layer use the standalone imagenet_single_layer
 
 Imagenet experiments for k=2+ can be run with imagenet.py
 
+Note k in the paper corresponds to nlin in the code
 
 Some example results
 
