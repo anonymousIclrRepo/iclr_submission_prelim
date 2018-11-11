@@ -15,20 +15,20 @@ Some example results
 
 k=3 (~91.7) 
 ```
-python cifar.py --ncnn 4 --nlin 2 --feature_size 128 --epochdecay 15 --nepochs 50 --down [1] --prog 1
+python cifar.py --ncnn 4 --nlin 2 --feature_size 128 --down [1] 
 
 ```
 
 k=2 (~90.4)
 
 ```
-python cifar.py --ncnn 4 --nlin 1 --feature_size 128 --epochdecay 15 --nepochs 50 --down [1] --prog 1
+python cifar.py --ncnn 4 --nlin 1 --feature_size 128 --down [1] 
 
 ```
 
-k=1 much more interesting model theoretically but performance  88.3 and bigger
+k=1 (~88.3) much more interesting model theoretically 
 ```
-python cifar.py --ncnn 5 --nlin 0 --feature_size 256 --epochdecay 15 --nepochs 50 --down [1,3] --bn 0
+python cifar.py --ncnn 5 --nlin 0 --feature_size 256 --down [1,3] --bn 0
 
 ```
 
@@ -49,7 +49,7 @@ python imagenet.py --ncnn 8 --nlin 1
 
 k=1 model
 ```
-python imagenet_single_layer.py 
+python imagenet_single_layer.py --ncnn 8
 
 ```
 
