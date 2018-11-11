@@ -1,4 +1,4 @@
-# layerwiseCNN
+# Greedy Layerwise CNN
 
 Code for experiments on greedy supervised layerwise CNNs
 
