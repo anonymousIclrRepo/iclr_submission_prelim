@@ -68,7 +68,7 @@ class ds_conv(nn.Module):
             self.conv_op = nn.Sequential(self.down, self.conv1)
         else:
             raise ValueError("I don't get {self.ds_type}. Only know False, True, 'psi', 'stride', 'maxpool', 'avgpool'")
-            #raise ValueError("lol")
+            
 
     def forward(self, x):
         conv = self.conv_op(x)
