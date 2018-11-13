@@ -76,24 +76,6 @@ class ds_conv(nn.Module):
         return out
 
 
-class block_skip(nn.Module):
-    expansion = 1
-    def __init__(self, in_planes, planes, stride=1):
-        super(block_skip, self).__init__()
-        self.conv1 = nn.Conv2d(in_planes, planes, kernel_size=3,padding=1, bias=False)
-        self.bn1 = nn.BatchNorm2d(planes)
-        self.conv2 = nn.Conv2d(planes, planes, kernel_size=3, stride=stride, padding=1, bias=False)
-        self.bn2 = nn.BatchNorm2d(planes)
-        self.bn3 = nn.BatchNorm2d(planes)
-
-
-    def forward(self, x):
-        out = F.relu(self.bn1(self.conv1(x)))
-        out = self.bn2(self.conv2(out))
-        out += x
-        out = self.bn3(out)
-        return out
-
 
 class psi(nn.Module):
     def __init__(self, block_size):
@@ -217,7 +199,7 @@ class greedyNet(nn.Module):
         self.batchn = batchnorm
         for n in range(num_blocks - 1):
             if n in downsample:
-                if block in (block_conv, block_skip):
+                if block in (block_conv):
                     pre_factor = 4
                 else:
                     pre_factor = 1
@@ -247,7 +229,7 @@ class greedyNet(nn.Module):
 
     def add_block(self, downsample=False):
         if downsample:
-            if self.block in (block_conv, block_skip):
+            if self.block in (block_conv):
                 pre_factor = 4 # the old block needs this factor 4
             else:
                 pre_factor = 1
