@@ -108,7 +108,7 @@ class psi2(nn.Module):
            transposes to put the two 'block_size' dims before channel,
            then reshapes back into (batch, block_size ** 2 * channel, ...)"""
 
-        bs = self.block_size # lol, bs
+        bs = self.block_size 
         batch, channel, height, width = x.shape
         if ((height % bs) != 0) or (width % bs != 0):
             raise ValueError("height and width must be divisible by block_size")
